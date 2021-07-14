@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', authenticateToken ,async (req, res) => {
     try {
-        const users = await (await pool.query('SELECT * FROM users')).rows;
+        const users = await (await pool.query('SELECT user_id, user_name, user_email FROM users')).rows;
         res.json(users);
     } catch (e) {
         res.status(500).json({
@@ -20,6 +20,7 @@ router.get('/', authenticateToken ,async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { name, email, password } = req.body;
+    console.log(name, email, password);
     try {
         if (name && email && password) {
             const hashedPassword = await bcrypt.hash(password, 10);

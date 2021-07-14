@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 // Routes
 import usersRoutes from './routes/users.js';
 import authRoutes from './routes/auth.js';
+import postRoutes from './routes/posts.js';
 
 
 // app constants
@@ -24,6 +25,7 @@ app.use(json());
 
 app.use('/api/v1.0/users', usersRoutes);
 app.use('/api/v1.0/auth', authRoutes);
+app.use('/api/v1.0/posts', postRoutes);
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
